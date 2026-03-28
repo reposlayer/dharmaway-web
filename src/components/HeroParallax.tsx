@@ -14,144 +14,181 @@ export default function HeroParallax() {
     offset: ["start start", "end start"],
   });
 
-  const yText = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const yCard = useTransform(scrollYProgress, [0, 1], ["0%", "60%"]);
+  const yText = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
+  const yImage = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
+  const imageRotate = useTransform(scrollYProgress, [0, 1], [0, -3]);
 
-  // Framer Motion Variants for ultra-smooth staggering
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.15, delayChildren: 0.1 }
+      transition: { staggerChildren: 0.12, delayChildren: 0.3 }
     }
   };
 
   const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 100, rotate: 2 },
+    hidden: { opacity: 0, y: 120, skewY: 4 },
     visible: { 
       opacity: 1, 
       y: 0, 
-      rotate: 0, 
+      skewY: 0,
       transition: { duration: 1.4, ease: [0.16, 1, 0.3, 1] } 
     }
   };
 
+  const fadeUp: Variants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } }
+  };
+
   return (
-    <section ref={containerRef} className="relative min-h-screen w-full px-6 md:px-12 flex flex-col justify-between pb-12 pt-32 md:pt-40 overflow-hidden">
+    <section ref={containerRef} className="relative min-h-[100vh] w-full overflow-hidden flex flex-col">
       
-      {/* Dreamy Ambient Aurora - Slow rotating gradient for Wonderland feel */}
+      {/* Ambient light blobs */}
       <motion.div 
-        animate={{ rotate: 360, scale: [1, 1.2, 1] }}
-        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-        className="absolute top-1/4 left-1/4 w-[60vw] h-[60vw] md:w-[40vw] md:h-[40vw] bg-gradient-to-br from-[#FFB7C5]/30 via-[#F8E0FF]/25 to-transparent blur-[120px] rounded-full pointer-events-none mix-blend-multiply z-0" 
+        animate={{ rotate: 360 }}
+        transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+        className="absolute top-0 left-[-10%] w-[60vw] h-[60vw] bg-gradient-to-br from-brand-200/20 via-brand-100/15 to-transparent blur-[120px] rounded-full pointer-events-none mix-blend-multiply z-0" 
+      />
+      <motion.div 
+        animate={{ rotate: -360 }}
+        transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
+        className="absolute bottom-[-20%] right-[-10%] w-[50vw] h-[50vw] bg-gradient-to-tl from-accent-200/10 via-brand-100/10 to-transparent blur-[100px] rounded-full pointer-events-none mix-blend-multiply z-0" 
       />
 
-      {/* Top Header Labels */}
-      <motion.div 
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 0.2 }}
-        className="relative z-10 flex justify-between items-start w-full uppercase tracking-[0.4em] text-[9px] md:text-[11px] font-bold text-stone-400"
-      >
-        <div className="flex flex-col gap-1">
-          <span className="text-stone-900">Tristana Studio</span>
-          <span>Evolucija Tijela</span>
-        </div>
-        <div className="flex flex-col gap-1 text-right">
-          <span className="text-[#D87093] flex items-center justify-end gap-2"><Sparkles size={10} /> Magija Pokreta</span>
-          <span>Rijeka, Hrvatska</span>
-        </div>
-      </motion.div>
-
-      {/* Giant Editorial Typography Lockup */}
-      <motion.div 
-        style={{ y: yText, opacity }}
-        className="flex-1 flex flex-col justify-center relative z-10 w-full mt-10 md:mt-0"
-      >
-        <motion.h1 
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="text-[15vw] md:text-[11vw] font-serif text-stone-900 leading-[0.8] tracking-tighter"
+      {/* Main content grid */}
+      <div className="relative z-10 flex-1 flex flex-col lg:flex-row items-center px-6 md:px-12 lg:px-16 pt-28 md:pt-36 lg:pt-0 gap-8 lg:gap-0">
+        
+        {/* LEFT: Typography */}
+        <motion.div 
+          style={{ y: yText, opacity }}
+          className="flex-1 flex flex-col justify-center lg:pr-12 w-full"
         >
-          {/* Line 1 */}
-          <div className="overflow-hidden pb-4 md:pb-6">
-            <motion.div variants={itemVariants} className="origin-bottom-left">
-              Otkrijte
+          {/* Eyebrow */}
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.1 }}
+            className="flex items-center gap-4 mb-8"
+          >
+            <div className="h-px w-16 bg-brand-400" />
+            <span className="text-brand-600 text-[10px] tracking-[0.4em] uppercase font-semibold flex items-center gap-2">
+              <Sparkles size={10} /> Sri Dharma Mittra Lineage
+            </span>
+          </motion.div>
+
+          <motion.h1 
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="text-[12vw] md:text-[8vw] lg:text-[5.5vw] font-serif text-stone-900 leading-[0.88] tracking-tight"
+          >
+            <div className="overflow-hidden pb-2">
+              <motion.div variants={itemVariants} className="origin-bottom-left">
+                Pronađi
+              </motion.div>
+            </div>
+            <div className="overflow-hidden pb-2 ml-[5vw] lg:ml-[3vw]">
+              <motion.div variants={itemVariants}>
+                <span className="italic font-light text-brand-600">Svoju</span>
+              </motion.div>
+            </div>
+            <div className="overflow-hidden pb-2 ml-[10vw] lg:ml-[6vw]">
+              <motion.div variants={itemVariants} className="origin-bottom-left">
+                Dharmu<span className="text-brand-400">.</span>
+              </motion.div>
+            </div>
+          </motion.h1>
+
+          {/* Subtext + CTA */}
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="mt-12 flex flex-col sm:flex-row items-start gap-8"
+          >
+            <motion.p variants={fadeUp} className="text-stone-500 font-light text-base md:text-lg leading-relaxed max-w-sm">
+              Utočište u srcu Zagreba za autentičnu yogu. Više od 30 satova tjedno u tradiciji drevne prakse.
+            </motion.p>
+            <motion.div variants={fadeUp}>
+              <Magnetic>
+                <Link href="/programi" className="group relative inline-flex items-center gap-5 px-3 py-3 pr-8 bg-stone-900 text-stone-50 rounded-full overflow-hidden text-xs uppercase tracking-[0.25em] font-semibold border border-stone-800 shadow-[0_20px_40px_rgba(0,0,0,0.12)] hover:shadow-[0_20px_60px_rgba(192,126,24,0.25)] transition-all duration-700">
+                  <div className="absolute inset-0 bg-brand-600 rounded-full translate-y-[110%] group-hover:translate-y-0 transition-transform duration-700 ease-[0.16,1,0.3,1]" />
+                  <div className="relative z-10 w-11 h-11 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-brand-600 transition-colors duration-500">
+                    <ArrowRight size={16} className="group-hover:-rotate-45 transition-transform duration-500" />
+                  </div>
+                  <span className="relative z-10 group-hover:text-white transition-colors duration-500 whitespace-nowrap">Istraži Satove</span>
+                </Link>
+              </Magnetic>
             </motion.div>
-          </div>
-          
-          {/* Line 2 with Inline Ethereal Image */}
-          <div className="flex items-center ml-[5vw] md:ml-[8vw] my-2 md:my-0 overflow-hidden pb-4 md:pb-8">
+          </motion.div>
+        </motion.div>
+
+        {/* RIGHT: Hero Image */}
+        <motion.div 
+          style={{ y: yImage }}
+          className="flex-1 w-full lg:w-auto flex items-center justify-center relative"
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, rotate: 3 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            transition={{ duration: 1.6, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="relative w-full max-w-[500px] lg:max-w-none lg:w-[32vw]"
+          >
+            {/* Decorative ring behind */}
+            <div className="absolute -inset-4 md:-inset-8 border border-brand-200/30 rounded-[3rem] animate-float pointer-events-none" />
+            <div className="absolute -inset-8 md:-inset-14 border border-brand-100/20 rounded-[3.5rem] animate-float-delay pointer-events-none" />
+            
             <motion.div 
-              variants={itemVariants}
-              className="relative w-[28vw] md:w-[18vw] h-[12vw] md:h-[7vw] rounded-full overflow-hidden shadow-[0_20px_40px_rgba(255,183,197,0.4)] mr-3 md:mr-6 border-2 border-white/60 flex-shrink-0"
+              style={{ scale, rotate: imageRotate }}
+              className="aspect-[3/4] rounded-[2.5rem] overflow-hidden relative shadow-[0_30px_100px_rgba(192,126,24,0.15)] border border-white/40"
             >
               <Image 
-                src="https://images.unsplash.com/photo-1518609878373-06d740f60d8b?q=80&w=1500" 
-                alt="Ethereal Silk Movement" 
+                src="https://www.dharmawayyoga.com/uploads/1/2/4/2/124267651/230921-3756-r-2-102-david-and-jelena-by-ellard-vasen-photos-app-c1-2048x1365-jpg_orig.webp" 
+                alt="DharmaWay Yoga Praksa" 
                 fill 
-                className="object-cover scale-110" 
+                className="object-cover" 
                 priority 
+                sizes="(max-width: 768px) 100vw, 32vw"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-stone-900/30 via-transparent to-brand-100/10 mix-blend-multiply" />
             </motion.div>
-            <motion.div variants={itemVariants}>
-              <span className="italic font-light text-[#D87093] pr-4 md:pr-0">Magiju</span>
-            </motion.div>
-          </div>
-          
-          {/* Line 3 */}
-          <div className="overflow-hidden pb-4 md:pb-6 pl-[8vw] md:pl-[12vw]">
-            <motion.div variants={itemVariants} className="origin-bottom-left">
-              Postojanja.
-            </motion.div>
-          </div>
-        </motion.h1>
-      </motion.div>
 
-      {/* Bottom Interface: CTA & Glass Card */}
+            {/* Floating quote card */}
+            <motion.div 
+              initial={{ opacity: 0, x: 40, y: 20 }}
+              animate={{ opacity: 1, x: 0, y: 0 }}
+              transition={{ duration: 1.2, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              className="absolute -left-6 md:-left-16 bottom-12 md:bottom-20 bg-white/70 backdrop-blur-2xl border border-white/60 p-6 rounded-2xl shadow-[0_15px_40px_rgba(0,0,0,0.06)] max-w-[240px] animate-float-delay"
+            >
+              <div className="text-brand-500 mb-3">✦</div>
+              <p className="text-stone-700 font-serif italic text-sm leading-relaxed">
+                &ldquo;Yoga je putovanje kroz sebe, prema sebi.&rdquo;
+              </p>
+              <p className="text-stone-400 text-[10px] tracking-widest uppercase mt-2">Sri Dharma Mittra</p>
+            </motion.div>
+          </motion.div>
+        </motion.div>
+      </div>
+
+      {/* Bottom scroll indicator */}
       <motion.div 
-        style={{ opacity }}
-        className="relative z-20 flex flex-col md:flex-row justify-between items-end gap-10 w-full mt-12 md:mt-0"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2 }}
+        className="relative z-10 flex justify-center pb-8"
       >
-        {/* Interaction Button */}
-        <motion.div
-           initial={{ opacity: 0, scale: 0.9 }}
-           animate={{ opacity: 1, scale: 1 }}
-           transition={{ duration: 1.2, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <Magnetic>
-            <Link href="/programi" className="group relative inline-flex items-center gap-6 px-3 py-3 pr-8 bg-stone-900 text-stone-50 rounded-full overflow-hidden text-xs uppercase tracking-[0.25em] font-semibold border-border border-stone-800 shadow-[0_20px_40px_rgba(0,0,0,0.15)] hover:shadow-[0_20px_60px_rgba(216,112,147,0.4)] transition-all duration-700">
-              <div className="absolute inset-0 bg-[#D87093] rounded-full translate-y-[110%] group-hover:translate-y-0 transition-transform duration-700 ease-[0.16,1,0.3,1]" />
-              <div className="relative z-10 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-[#D87093] transition-colors duration-500">
-                <ArrowRight size={18} className="group-hover:-rotate-45 transition-transform duration-500" />
-              </div>
-              <span className="relative z-10 group-hover:text-white transition-colors duration-500 mt-0.5">Istraži Rad</span>
-            </Link>
-          </Magnetic>
-        </motion.div>
-
-        {/* Ethereal Floating Description Card */}
         <motion.div 
-          style={{ y: yCard }}
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-md w-full md:w-auto bg-white/30 backdrop-blur-2xl border border-white/60 p-8 rounded-[2rem] shadow-[0_20px_50px_rgba(255,183,197,0.15)] relative overflow-hidden group"
+          animate={{ y: [0, 8, 0] }}
+          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+          className="flex flex-col items-center gap-2"
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent pointer-events-none" />
-          <div className="relative z-10">
-            <Sparkles size={18} className="text-[#D87093] mb-5" />
-            <p className="text-stone-700 font-medium font-serif italic text-lg mb-2">Poezija biomehanike.</p>
-            <p className="text-stone-600 font-light leading-relaxed text-sm">
-              Uronite u zaštićen prostor gdje tijelo pronalazi svoj prirodni balans. 
-              Daleko od buke, na rubu sna i mekoće, oslobodite urođeni potencijal.
-            </p>
-          </div>
+          <span className="text-stone-400 text-[9px] tracking-[0.3em] uppercase">Otkrijte više</span>
+          <div className="w-px h-8 bg-gradient-to-b from-brand-400/50 to-transparent" />
         </motion.div>
       </motion.div>
-
     </section>
   );
 }

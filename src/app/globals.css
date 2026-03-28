@@ -1,18 +1,39 @@
 @import "tailwindcss";
 
 @theme {
-  --color-stone-50: #FCFBF8;
-  --color-stone-100: #F3F1E7;
-  --color-stone-800: #2C302E;
-  --color-stone-900: #1B1E1C;
-  --color-accent-400: #A89F91;
-  --color-accent-700: #736C61;
-  
-  /* Classy forest green/sage accents for nature feel */
-  --color-brand-100: #E6EAE3;
-  --color-brand-400: #8FA690;
-  --color-brand-700: #465848;
-  --color-brand-900: #263327;
+  --color-stone-50: #FAF8F5;
+  --color-stone-100: #F0ECE4;
+  --color-stone-200: #E2DCD2;
+  --color-stone-300: #C9C0B3;
+  --color-stone-400: #A89F91;
+  --color-stone-500: #8A7F70;
+  --color-stone-600: #6E6456;
+  --color-stone-700: #524B3F;
+  --color-stone-800: #322E28;
+  --color-stone-900: #1A1714;
+  --color-stone-950: #0D0B09;
+
+  /* Warm saffron/amber yoga palette */
+  --color-brand-50: #FEF7ED;
+  --color-brand-100: #FBE8C8;
+  --color-brand-200: #F6D090;
+  --color-brand-300: #EBB454;
+  --color-brand-400: #D99A2B;
+  --color-brand-500: #C07E18;
+  --color-brand-600: #A66312;
+  --color-brand-700: #8B4A10;
+  --color-brand-800: #703A12;
+  --color-brand-900: #5C2F14;
+
+  /* Sacred accent - deep terracotta */
+  --color-accent-50: #FDF4F2;
+  --color-accent-100: #F9E5DF;
+  --color-accent-200: #F3C9BF;
+  --color-accent-300: #E8A492;
+  --color-accent-400: #D87860;
+  --color-accent-500: #C65A40;
+  --color-accent-600: #A84530;
+  --color-accent-700: #8A3828;
 
   --font-sans: var(--font-montserrat);
   --font-serif: var(--font-cormorant);
@@ -24,6 +45,36 @@ html, body {
 
 h1, h2, h3, h4, h5, h6 {
   @apply font-serif font-light;
+}
+
+/* Smooth selection */
+::selection {
+  background: rgba(235, 180, 84, 0.35);
+  color: #1A1714;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(192, 126, 24, 0.3);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(192, 126, 24, 0.5);
+}
+
+/* Hide scrollbar for carousel */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
 }
 
 @keyframes blob {
@@ -45,9 +96,63 @@ h1, h2, h3, h4, h5, h6 {
   animation-delay: 4s;
 }
 
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-10px) rotate(1deg); }
+  75% { transform: translateY(10px) rotate(-1deg); }
+}
+
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
+.animate-float-delay {
+  animation: float 8s ease-in-out 3s infinite;
+}
+
+/* Noise grain texture */
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -10%); }
+  20% { transform: translate(-15%, 5%); }
+  30% { transform: translate(7%, -25%); }
+  40% { transform: translate(-5%, 25%); }
+  50% { transform: translate(-15%, 10%); }
+  60% { transform: translate(15%, 0%); }
+  70% { transform: translate(0%, 15%); }
+  80% { transform: translate(3%, 35%); }
+  90% { transform: translate(-10%, 10%); }
+}
+
+.grain-overlay::after {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  z-index: 99;
+  pointer-events: none;
+  animation: grain 4s steps(10) infinite;
+}
+
+/* Horizontal line divider animation */
+@keyframes expand-line {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.line-expand {
+  animation: expand-line 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform-origin: left;
+}
+
 @media (pointer: fine) {
   * {
     cursor: none !important;
   }
 }
-

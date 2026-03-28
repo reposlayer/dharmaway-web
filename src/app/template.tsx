@@ -16,7 +16,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
            initial={{ scale: 1, opacity: 1 }}
            animate={{ scale: 1.5, opacity: 0 }}
            transition={{ duration: 0.8, ease: "easeOut" }}
-           className="w-32 h-32 rounded-full border border-brand-500/30 blur-[2px]"
+           className="w-32 h-32 rounded-full border border-brand-400/30 blur-[2px]"
         />
       </motion.div>
       <motion.div

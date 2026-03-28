@@ -67,15 +67,10 @@ export default function CursorGlow() {
     };
   }, [isVisible, mouseX, mouseY]);
 
-  // Opt-out easily on SSR
   if (typeof window !== "undefined" && window.innerWidth < 768) return null;
 
   return (
     <>
-      {/* 
-        OPTIMIZATION: Removed heavy CSS 'filter: blur()' that recalculates every frame on movement.
-        Using purely a smooth radial gradient to achieve the exact same soft ambient glow with minimal GPU cost 
-      */}
       <motion.div
         className="fixed top-0 left-0 pointer-events-none z-[10] rounded-full mix-blend-multiply will-change-transform"
         style={{
@@ -85,7 +80,7 @@ export default function CursorGlow() {
           y: ambientY,
           translateX: "-50%",
           translateY: "-50%",
-          background: "radial-gradient(circle, rgba(230, 200, 205, 0.18) 0%, rgba(245, 220, 225, 0.08) 25%, transparent 60%)",
+          background: "radial-gradient(circle, rgba(235, 180, 84, 0.12) 0%, rgba(251, 232, 200, 0.06) 25%, transparent 60%)",
           opacity: isVisible ? 1 : 0,
           transition: "opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1)",
         }}
@@ -108,7 +103,7 @@ export default function CursorGlow() {
       />
 
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[9999] rounded-full bg-[#FFB7C5] shadow-[0_0_15px_rgba(255,183,197,1)] will-change-transform"
+        className="fixed top-0 left-0 pointer-events-none z-[9999] rounded-full bg-brand-300 shadow-[0_0_15px_rgba(235,180,84,0.8)] will-change-transform"
         style={{
           width: "6px",
           height: "6px",
