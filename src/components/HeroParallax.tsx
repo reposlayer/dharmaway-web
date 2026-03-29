@@ -75,7 +75,7 @@ export default function HeroParallax() {
           >
             <div className="h-px w-16 bg-brand-400" />
             <span className="text-brand-600 text-[10px] tracking-[0.4em] uppercase font-semibold flex items-center gap-2">
-              <Sparkles size={10} /> Autentična Wellness & Yoga Oaza
+              <Sparkles size={10} /> Sri Dharma Mittra Lineage
             </span>
           </motion.div>
 
@@ -97,7 +97,7 @@ export default function HeroParallax() {
             </div>
             <div className="overflow-hidden pb-2 ml-[10vw] lg:ml-[6vw]">
               <motion.div variants={itemVariants} className="origin-bottom-left">
-                Ravnotežu<span className="text-brand-400">.</span>
+                Dharmu<span className="text-brand-400">.</span>
               </motion.div>
             </div>
           </motion.h1>
@@ -110,16 +110,16 @@ export default function HeroParallax() {
             className="mt-12 flex flex-col sm:flex-row items-start gap-8"
           >
             <motion.p variants={fadeUp} className="text-stone-500 font-light text-base md:text-lg leading-relaxed max-w-sm">
-              Utočište u srcu Zagreba za autentičnu njegu. Organska kozmetika, rituali i svjesni pokret yoge.
+              Utočište u srcu Zagreba za autentičnu yogu. Više od 30 satova tjedno u tradiciji drevne prakse.
             </motion.p>
             <motion.div variants={fadeUp}>
               <Magnetic>
-                <Link href="/programi" className="group relative inline-flex items-center gap-5 px-3 py-3 pr-8 bg-stone-900 text-stone-50 rounded-full overflow-hidden text-xs uppercase tracking-[0.25em] font-semibold border border-stone-800 shadow-[0_20px_40px_rgba(0,0,0,0.12)] hover:shadow-[0_20px_60px_rgba(138,154,91,0.25)] transition-all duration-700">
+                <Link href="/programi" className="group relative inline-flex items-center gap-5 px-3 py-3 pr-8 bg-stone-900 text-stone-50 rounded-full overflow-hidden text-xs uppercase tracking-[0.25em] font-semibold border border-stone-800 shadow-[0_20px_40px_rgba(0,0,0,0.12)] hover:shadow-[0_20px_60px_rgba(192,126,24,0.25)] transition-all duration-700">
                   <div className="absolute inset-0 bg-brand-600 rounded-full translate-y-[110%] group-hover:translate-y-0 transition-transform duration-700 ease-[0.16,1,0.3,1]" />
                   <div className="relative z-10 w-11 h-11 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-brand-600 transition-colors duration-500">
                     <ArrowRight size={16} className="group-hover:-rotate-45 transition-transform duration-500" />
                   </div>
-                  <span className="relative z-10 group-hover:text-white transition-colors duration-500 whitespace-nowrap">Istraži Usluge</span>
+                  <span className="relative z-10 group-hover:text-white transition-colors duration-500 whitespace-nowrap">Istraži Satove</span>
                 </Link>
               </Magnetic>
             </motion.div>
@@ -143,11 +143,11 @@ export default function HeroParallax() {
             
             <motion.div 
               style={{ scale, rotate: imageRotate }}
-              className="aspect-[3/4] rounded-[2.5rem] overflow-hidden relative shadow-[0_30px_100px_rgba(138,154,91,0.15)] border border-white/40"
+              className="aspect-[3/4] rounded-[2.5rem] overflow-hidden relative shadow-[0_30px_100px_rgba(192,126,24,0.15)] border border-white/40"
             >
               <Image 
-                src="https://studiohara.hr/wp-content/uploads/2023/11/69022747_1719472214864032.jpg" 
-                alt="Studio Hara Atmosfera" 
+                src="https://www.dharmawayyoga.com/uploads/1/2/4/2/124267651/230921-3756-r-2-102-david-and-jelena-by-ellard-vasen-photos-app-c1-2048x1365-jpg_orig.webp" 
+                alt="DharmaWay Yoga Praksa" 
                 fill 
                 className="object-cover" 
                 priority 
@@ -165,9 +165,9 @@ export default function HeroParallax() {
             >
               <div className="text-brand-500 mb-3">✦</div>
               <p className="text-stone-700 font-serif italic text-sm leading-relaxed">
-                &ldquo;Ljepota je u jednostavnosti i harmoniji s prirodom.&rdquo;
+                &ldquo;Yoga je putovanje kroz sebe, prema sebi.&rdquo;
               </p>
-              <p className="text-stone-400 text-[10px] tracking-widest uppercase mt-2">Studio Harā</p>
+              <p className="text-stone-400 text-[10px] tracking-widest uppercase mt-2">Sri Dharma Mittra</p>
             </motion.div>
           </motion.div>
         </motion.div>

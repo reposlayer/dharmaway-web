@@ -20,10 +20,10 @@ export default function Navbar() {
   }, []);
 
   const links = [
-    { href: "/yoga", label: "Yoga" },
-    { href: "/tretmani", label: "Tretmani" },
-    { href: "/masaza", label: "Masaža" },
-    { href: "/cjenik", label: "Cjenik" },
+    { href: "/programi", label: "Programi" },
+    { href: "/radionice", label: "Edukacije" },
+    { href: "/raspored", label: "Raspored" },
+    { href: "/o-nama", label: "O nama" },
     { href: "/kontakt", label: "Kontakt" },
   ];
 
@@ -38,15 +38,15 @@ export default function Navbar() {
         <div 
           className={`pointer-events-auto flex justify-between items-center transition-all duration-700 ease-[0.16,1,0.3,1] rounded-full overflow-hidden
             ${isScrolled 
-              ? "bg-white/40 backdrop-blur-3xl border border-white/60 shadow-[0_8px_40px_rgba(138,154,91,0.12)] px-6 py-3 w-full max-w-4xl" 
+              ? "bg-white/40 backdrop-blur-3xl border border-white/60 shadow-[0_8px_40px_rgba(235,180,84,0.12)] px-6 py-3 w-full max-w-4xl" 
               : "bg-transparent border-transparent px-8 py-5 w-full max-w-7xl"
             }
           `}
         >
           <Magnetic>
             <Link href="/" className="text-xl md:text-2xl font-serif tracking-[0.15em] uppercase text-stone-900 group">
-              <span className="group-hover:text-brand-500 transition-colors duration-500">Studio</span>
-              <span className="text-brand-600 group-hover:text-brand-400 transition-colors duration-500 ml-2">Harā</span>
+              <span className="group-hover:text-brand-500 transition-colors duration-500">Dharma</span>
+              <span className="text-brand-600 group-hover:text-brand-400 transition-colors duration-500">Way</span>
             </Link>
           </Magnetic>
           
@@ -65,7 +65,7 @@ export default function Navbar() {
                     <span 
                       className={`absolute -bottom-1 w-1 h-1 rounded-full transition-all duration-500
                         ${isActive 
-                          ? "bg-brand-500 opacity-100 scale-100 shadow-[0_0_8px_rgba(138,154,91,0.8)]" 
+                          ? "bg-brand-500 opacity-100 scale-100 shadow-[0_0_8px_rgba(192,126,24,0.8)]" 
                           : "bg-brand-300 opacity-0 scale-0 group-hover:scale-100 group-hover:opacity-100"
                         }
                       `} 

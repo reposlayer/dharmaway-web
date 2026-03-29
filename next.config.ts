@@ -5,14 +5,14 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "vivid-vibes.hr",
+        hostname: "images.unsplash.com",
         pathname: "/**",
       },
       {
         protocol: "https",
-        hostname: "studiohara.hr",
+        hostname: "www.dharmawayyoga.com",
         pathname: "/**",
-      },
+      }
     ],
   },
 };
